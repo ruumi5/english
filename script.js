@@ -4,6 +4,18 @@ let attempt = 0;
 let score = 0;
 let completed = 0;
 let wrongGuesses = new Set();
+let questionOrder = [];
+let currentOrderPos = -1;
+const achievementStatus = document.getElementById("achievement-status");
+
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
 const currentScore = document.getElementById("current-score");
 const completedCount = document.getElementById("completed-count");
@@ -51,17 +63,29 @@ function updateScore() {
   currentScore.textContent = score.toString();
   completedCount.textContent = completed.toString();
   levelText.textContent = Math.min(20, Math.floor(score / 5000) + 1).toString();
+
+  const trophies = [];
+  if (completed >= 10) trophies.push("🎖️ 10 klara");
+  if (completed >= 30) trophies.push("🏆 30 klara");
+  if (completed >= 100) trophies.push("👑 100 klara");
+  achievementStatus.textContent = trophies.length > 0 ? trophies.join(" - ") : "Inga troféer än";
+
+  const bar = document.getElementById("progress-bar");
+  if (bar) {
+    bar.style.width = `${Math.round((completed / questionBank.length) * 100)}%`;
+  }
 }
 
-function showQuestion(index) {
-  currentIndex = index;
+function showQuestion(orderPosition) {
+  currentOrderPos = orderPosition;
+  currentIndex = questionOrder[orderPosition];
   attempt = 0;
   wrongGuesses.clear();
-  const q = questionBank[index];
+  const q = questionBank[currentIndex];
   questionTitle.textContent = `${q.id}. ${q.question}`;
   hint.textContent = q.hint;
   feedback.textContent = "";
-  attemptInfo.textContent = "Attempt: 0 of 4";
+  attemptInfo.textContent = "Försök: 0 av 4";
 
   answersEl.innerHTML = "";
   q.options.forEach((option, i) => {
@@ -72,19 +96,23 @@ function showQuestion(index) {
     answersEl.appendChild(btn);
   });
 
+  if ('speechSynthesis' in window) {
+    document.getElementById('speakButton').disabled = false;
+  }
+
   nextButton.disabled = true;
 }
 
 function selectAnswer(index) {
   const q = questionBank[currentIndex];
   attempt += 1;
-  attemptInfo.textContent = `Attempt: ${attempt} of 4`;
+  attemptInfo.textContent = `Försök: ${attempt} av 4`;
 
   if (q.answer === index) {
     const add = points[Math.min(attempt - 1, points.length - 1)];
     score += add;
     completed += 1;
-    const msg = `Correct! +${add} points.`;
+    const msg = `Rätt! +${add} poäng.`;
     feedback.textContent = msg;
     feedback.className = "feedback correct";
 
@@ -94,17 +122,17 @@ function selectAnswer(index) {
     updateScore();
 
     if (completed >= questionBank.length) {
-      questionTitle.textContent = "Bravo! All 100 quests done!";
-      hint.textContent = "You have finished the learning game. Reset to play again or refresh.";
+      questionTitle.textContent = "Bra jobbat! Alla 100 uppdrag klara! 🎉";
+      hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
       nextButton.disabled = true;
       return;
     }
   } else {
     wrongGuesses.add(index);
-    feedback.textContent = "Oops, not quite. Try again!";
+    feedback.textContent = "Fel, försök igen!";
     feedback.className = "feedback wrong";
     if (attempt >= 4) {
-      feedback.textContent = `No more tries. Correct answer: ${q.options[q.answer]}`;
+      feedback.textContent = `Inga fler försök. Rätt svar: ${q.options[q.answer]}`;
       disableAnswers();
       nextButton.disabled = false;
     }
@@ -116,19 +144,32 @@ function disableAnswers() {
   buttons.forEach((btn) => (btn.disabled = true));
 }
 
+function speakQuestion() {
+  if (!('speechSynthesis' in window)) return;
+  const q = questionBank[currentIndex];
+  if (!q) return;
+  const utterance = new SpeechSynthesisUtterance(q.question);
+  utterance.lang = 'en-US';
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+
 function nextQuestion() {
   if (completed >= questionBank.length) return;
-  const remaining = questionBank
-    .map((q, i) => ({ q, i }))
-    .filter((entry) => entry.q && entry.q.id <= questionBank.length) // preserve
-  ;
-  let next = currentIndex + 1;
-  if (next >= questionBank.length) next = 0;
-  showQuestion(next);
+  let nextOrder = currentOrderPos + 1;
+  if (nextOrder >= questionBank.length) {
+    questionTitle.textContent = "Bra jobbat! Alla 100 uppdrag klara! 🎉";
+    hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
+    nextButton.disabled = true;
+    return;
+  }
+  showQuestion(nextOrder);
 }
 
 function startQuest() {
   if (questionBank.length === 0) return;
+  questionOrder = shuffle(Array.from({ length: questionBank.length }, (_, i) => i));
+  currentOrderPos = -1;
   showQuestion(0);
 }
 
@@ -140,9 +181,9 @@ function resetProgress() {
   setCookie("englishQuestScore", "", -1);
   setCookie("englishQuestCompleted", "", -1);
   updateScore();
-  feedback.textContent = "Progress reset. Press Start to begin again.";
+  feedback.textContent = "Framsteg nollställs. Tryck Starta uppdrag för att börja igen.";
   feedback.className = "feedback";
-  questionTitle.textContent = "Press Start to begin your adventure";
+  questionTitle.textContent = "Tryck på Start för att börja ditt äventyr 🎮";
   hint.textContent = "";
   answersEl.innerHTML = "";
   attemptInfo.textContent = "";
@@ -157,8 +198,12 @@ nextButton.addEventListener("click", () => {
   nextQuestion();
 });
 
+document.getElementById("speakButton").addEventListener("click", () => {
+  speakQuestion();
+});
+
 resetButton.addEventListener("click", () => {
-  if (confirm("Are you sure you want to reset your progress?")) {
+  if (confirm("Är du säker på att du vill nollställa framstegen?")) {
     resetProgress();
   }
 });

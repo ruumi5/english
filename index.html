@@ -8,50 +8,56 @@
 </head>
 <body>
   <header>
-    <h1>English Quest!</h1>
-    <p>Learn English with game-style practice (no login required).</p>
+    <h1>Engelska Uppdrag 🚀</h1>
+    <p>Lär dig engelska med spelkänsla (ingen inloggning behövs).</p>
   </header>
 
   <main>
     <section id="score-panel" class="card">
-      <h2>Score</h2>
+      <h2>Poäng</h2>
       <div class="score-lines">
-        <span id="current-score">0</span> points
+        <span id="current-score">0</span> poäng
       </div>
       <div class="score-lines">
-        Level: <span id="level">1</span>
+        Nivå: <span id="level">1</span>
       </div>
       <div class="score-lines">
-        Completed: <span id="completed-count">0</span> / 100
+        Klara: <span id="completed-count">0</span> / 100
       </div>
-      <div class="score-lines">Saved in cookies/localStorage for you!</div>
-      <button id="resetButton" class="btn-red">Reset progress</button>
+      <div class="progress">
+        <div id="progress-bar"></div>
+      </div>
+      <div class="score-lines">🎯 Mål: 10, 30, 100 klara för troféer</div>
+      <div class="score-lines">🏅 <span id="achievement-status">Inga troféer än</span></div>
+      <div class="score-lines">Sparad i cookies/localStorage för dig!</div>
+      <button id="resetButton" class="btn-red">Nollställ</button>
     </section>
 
     <section id="question-panel" class="card">
-      <h2 id="question-title">Press Start to begin your adventure</h2>
+      <h2 id="question-title">Tryck på Start för att börja ditt äventyr 🎮</h2>
+      <button id="speakButton" class="btn btn-primary">🔊 Läs upp frågan</button>
       <div id="answers" class="button-grid"></div>
       <div id="feedback" class="feedback"></div>
       <div class="navigation">
-        <button id="nextButton" class="btn">Next Question</button>
+        <button id="nextButton" class="btn">Nästa fråga</button>
       </div>
       <div id="hint" class="hint"></div>
     </section>
 
     <section id="controls" class="card small-card">
-      <button id="startButton" class="btn btn-primary">Start Quest</button>
+      <button id="startButton" class="btn btn-primary">Starta uppdrag</button>
       <span id="attemptInfo"></span>
     </section>
 
     <section id="curriculum" class="card">
-      <h3>Curriculum Link</h3>
-      <p>Follow the Finnish national core curriculum for basic education (perusopetus):</p>
-      <a href="https://eperusteet.opintopolku.fi/#/sv/perusopetus/419550/vuosiluokkakokonaisuus/428781/oppiaine/600171" target="_blank" rel="noopener">English syllabus (Swedish)</a>
+      <h3>Läroplan</h3>
+      <p>Utgår från finska läroplanen för grundskola (perusopetus):</p>
+      <a href="https://eperusteet.opintopolku.fi/#/sv/perusopetus/419550/vuosiluokkakokonaisuus/428781/oppiaine/600171" target="_blank" rel="noopener">Engelska kursplan (svenska)</a>
     </section>
   </main>
 
   <footer>
-    <p>Built for a young learner. Play, practice, and get stronger in English!</p>
+    <p>Skapad för en ung spelare. Spela, öva och bli starkare i engelska!</p>
   </footer>
 
   <script src="questions.js"></script>
