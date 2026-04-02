@@ -1,0 +1,49 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(140deg, #081b30, #2b5278);
+  color: #fff;
+}
+header {
+  text-align: center;
+  padding: 1rem 1rem 0.5rem;
+}
+header h1 { margin: 0; font-size: 2rem; }
+header p { margin: 0.2rem 0 0.8rem; font-size: 1rem; color: #c8daf5; }
+main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+.card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.small-card { display: flex; align-items: center; justify-content: space-between; }
+.score-lines { font-size: 1.2rem; margin: 0.4rem 0; }
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+.btn, .btn-primary, .btn-red {
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+.btn { background: #5da1f7; color: #fff; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: #28a745; color: #fff; }
+.btn-red { background: #dc3545; color: #fff; }
+.feedback { min-height: 1.6rem; font-weight: 700; margin-top: 0.3rem; }
+.feedback.correct { color: #8ef7a3; }
+.feedback.wrong { color: #ffb3b8; }
+.hint { margin-top: 0.5rem; font-size: 0.9rem; color: #e0e8ff; }
+footer { text-align: center; font-size: 0.9rem; margin: 1rem 0 1.3rem; }
+@media (max-width: 700px) {
+  .button-grid { grid-template-columns: 1fr; }
+}

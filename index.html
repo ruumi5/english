@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Quest for 10-year-olds</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>English Quest!</h1>
+    <p>Learn English with game-style practice (no login required).</p>
+  </header>
+
+  <main>
+    <section id="score-panel" class="card">
+      <h2>Score</h2>
+      <div class="score-lines">
+        <span id="current-score">0</span> points
+      </div>
+      <div class="score-lines">
+        Level: <span id="level">1</span>
+      </div>
+      <div class="score-lines">
+        Completed: <span id="completed-count">0</span> / 100
+      </div>
+      <div class="score-lines">Saved in cookies/localStorage for you!</div>
+      <button id="resetButton" class="btn-red">Reset progress</button>
+    </section>
+
+    <section id="question-panel" class="card">
+      <h2 id="question-title">Press Start to begin your adventure</h2>
+      <div id="answers" class="button-grid"></div>
+      <div id="feedback" class="feedback"></div>
+      <div class="navigation">
+        <button id="nextButton" class="btn">Next Question</button>
+      </div>
+      <div id="hint" class="hint"></div>
+    </section>
+
+    <section id="controls" class="card small-card">
+      <button id="startButton" class="btn btn-primary">Start Quest</button>
+      <span id="attemptInfo"></span>
+    </section>
+
+    <section id="curriculum" class="card">
+      <h3>Curriculum Link</h3>
+      <p>Follow the Finnish national core curriculum for basic education (perusopetus):</p>
+      <a href="https://eperusteet.opintopolku.fi/#/sv/perusopetus/419550/vuosiluokkakokonaisuus/428781/oppiaine/600171" target="_blank" rel="noopener">English syllabus (Swedish)</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for a young learner. Play, practice, and get stronger in English!</p>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
