@@ -76,6 +76,60 @@ function updateScore() {
   }
 }
 
+function getLearningHint(q, currentAttempt) {
+  const themeTips = {
+    homes: [
+      "Läs stycket om hem igen och markera ord som beskriver boenden.",
+      "Jämför person och plats noggrant och uteslut sådant som hör till någon annan."
+    ],
+    family: [
+      "Leta efter familjeord som mother, father, brother, sister, mum och dad.",
+      "Räkna personerna eller jämför när de bor tillsammans."
+    ],
+    vocabulary: [
+      "Tänk på vilket alternativ som bäst förklarar ordet i textens sammanhang.",
+      "Prova att utesluta svar som inte beskriver samma sorts sak."
+    ],
+    space: [
+      "Läs rymdstycket långsamt och ringa in siffror, faktaord och viktiga begrepp.",
+      "Fundera på vad astronauter behöver för att kunna leva och arbeta i rymden."
+    ],
+    nature: [
+      "Jämför naturorden noga och tänk på skillnaden mellan bär, svamp och växter.",
+      "Leta efter ord som beskriver blad, färg eller hur växten ändras på vintern."
+    ],
+    "space story": [
+      "Följ händelserna i rätt ordning och tänk på vad som händer före, under och efter testet.",
+      "Leta efter känsloord, faror och vad Adhar gör för att klara uppdraget."
+    ],
+    feelings: [
+      "Leta efter känsloord i texten och jämför dem med svarsalternativen.",
+      "Fundera på hur någon brukar känna sig inför något svårt och farligt."
+    ],
+    scouts: [
+      "Läs skogsstycket igen och följ vad grupperna gör steg för steg.",
+      "Markera namn, färger och bärsorter innan du väljer svar."
+    ],
+    school: [
+      "Leta efter vem som är på skolan och vem som är hemma, och varför.",
+      "Jämför tidord som one Friday och the day before för att förstå händelsen."
+    ],
+    hobbies: [
+      "Tänk på vilken aktivitet som hör ihop med varje barn i texten.",
+      "Jämför hobbyerna och stryk sådant som tillhör någon annan person."
+    ]
+  };
+
+  const tipSet = themeTips[q.theme] || [
+    "Läs frågan igen och leta efter nyckelord i texten.",
+    "Pröva att utesluta svar som inte passar sammanhanget."
+  ];
+
+  if (currentAttempt === 1) return tipSet[0];
+  if (currentAttempt === 2 && q.hint) return q.hint;
+  return tipSet[Math.min(1, tipSet.length - 1)];
+}
+
 function showQuestion(orderPosition) {
   currentOrderPos = orderPosition;
   currentIndex = questionOrder[orderPosition];
@@ -83,7 +137,7 @@ function showQuestion(orderPosition) {
   wrongGuesses.clear();
   const q = questionBank[currentIndex];
   questionTitle.textContent = `${q.id}. ${q.question}`;
-  hint.textContent = q.hint;
+  hint.textContent = "Behöver du hjälp? Om svaret blir fel får du ett tips som hjälper dig att tänka vidare.";
   feedback.textContent = "";
   attemptInfo.textContent = "Försök: 0 av 4";
 
@@ -129,8 +183,9 @@ function selectAnswer(index) {
     }
   } else {
     wrongGuesses.add(index);
-    feedback.textContent = "Fel, försök igen!";
+    feedback.textContent = "Inte riktigt ännu. Läs tipset och försök igen!";
     feedback.className = "feedback wrong";
+    hint.textContent = `Tips: ${getLearningHint(q, attempt)}`;
     if (attempt >= 4) {
       feedback.textContent = `Inga fler försök. Rätt svar: ${q.options[q.answer]}`;
       disableAnswers();
