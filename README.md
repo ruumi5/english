@@ -4,9 +4,9 @@ This is a static learning game for a 10-year-old Swedish speaker to practice Eng
 
 ## Features
 
-- 100 multiple-choice questions (5 options each) with increasing game-style score.
+- 50 chapter-based multiple-choice questions (5 options each).
 - Scoring: first attempt 1000, second 100, third 10, fourth 1.
-- Stores progress in `localStorage` and cookies.
+- Stores progress in localStorage and cookies.
 - No login required.
 - Visual style inspired by computer games and quests.
 
@@ -14,7 +14,7 @@ This is a static learning game for a 10-year-old Swedish speaker to practice Eng
 
 - `index.html` - main app UI
 - `styles.css` - styling
-- `questions.js` - questions array and helper data generation
+- `questions.js` - chapter-based question bank
 - `script.js` - gameplay logic and persistence
 
 ## Run locally

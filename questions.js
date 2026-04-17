@@ -1,46 +1,52 @@
-const seedQuestions = [
-  {question: "Välj rätt pluralform:", base: "child", options: ["childs", "childes", "children", "childen", "childer"], answer: 2},
-  {question: "Vad är dåtidsformen av 'go' ?", base: "go", options: ["goed", "went", "gone", "goes", "goned"], answer: 1},
-  {question: "Vilket pronomen passar till 'Sofia and I':", base: "we", options: ["he", "they", "we", "us", "it"], answer: 2},
-  {question: "Vilket är ett adjektiv?", base: "fun", options: ["quickly", "fun", "run", "happily", "will"], answer: 1},
-  {question: "Välj rätt artikel:", base: "apple", options: ["a", "an", "the", "no", "this"], answer: 1},
-  {question: "Vilket är ett verb?", base: "read", options: ["book", "read", "blue", "beauty", "happy"], answer: 1},
-  {question: "Välj motsatsen till 'hot':", base: "hot", options: ["cold", "fast", "small", "loud", "dark"], answer: 0},
-  {question: "Vad betyder 'hungry'?", base: "hungry", options: ["tired", "thirsty", "full", "hungry", "angry"], answer: 3},
-  {question: "Vilket är ett frågeord?", base: "where", options: ["where", "fast", "nice", "many", "tall"], answer: 0},
-  {question: "Välj meningen som är korrekt:", base: "I play football", options: ["I plays football.", "I playing football.", "I play football.", "I played football.", "I to play football."], answer: 2},
-  {question: "Vilket ord betyder ungefär som 'big'?", base: "big", options: ["small", "huge", "soft", "quiet", "empty"], answer: 1},
-  {question: "Vilket ord är ett substantiv?", base: "school", options: ["run", "school", "yellow", "quick", "sleep"], answer: 1},
-  {question: "Välj rätt form i 'she ___ a book.'", base: "read", options: ["reads", "readed", "read", "reading", "have"], answer: 0},
-  {question: "Vilket ord är en färg?", base: "green", options: ["green", "walk", "fast", "near", "after"], answer: 0},
-  {question: "Välj rätt dåtidsform av 'have':", base: "have", options: ["had", "have", "haved", "having", "has"], answer: 0},
-  {question: "Vilken är rätt framtidsform: 'I ___ play.'", base: "will", options: ["will", "was", "is", "do", "did"], answer: 0},
-  {question: "Välj rätt sammandragning för 'I am':", base: "I'm", options: ["I am", "Im", "I'am", "I'm", "Iam"], answer: 3},
-  {question: "Vilket är ett tidsord?", base: "today", options: ["today", "happy", "dog", "green", "easily"], answer: 0},
-  {question: "Välj en hälsosam matvara:", base: "apple", options: ["apple", "candy", "cookie", "chips", "soda"], answer: 0},
-  {question: "Vad är motsatsen till 'sleepy'?", base: "awake", options: ["sleepy", "awake", "tired", "warm", "cold"], answer: 1}
+const questionBank = [
+  { id: 1, question: "Where does Max live?", options: ["On a farm", "In an apartment building", "In a row house", "In a duplex", "On a space station"], answer: 1, hint: "Max lives in the town centre.", theme: "homes" },
+  { id: 2, question: "Which floor does Max live on?", options: ["First floor", "Second floor", "Fourth floor", "Fifth floor", "Ground floor"], answer: 1, hint: "Look for the number floor in the text.", theme: "homes" },
+  { id: 3, question: "Who does Max live with during the week?", options: ["Dad", "Grandma", "Mother", "Brother", "Cousin"], answer: 2, hint: "Weekdays and weekends are different for Max.", theme: "family" },
+  { id: 4, question: "Where does Bella live?", options: ["In the town centre", "On a farm", "In an apartment", "In a space lab", "At school"], answer: 1, hint: "Bella lives in the country.", theme: "homes" },
+  { id: 5, question: "Who lives with Bella?", options: ["A big brother, a little sister, and parents", "Only her mum", "Two cousins and an aunt", "Only her dad", "Just Bella"], answer: 0, hint: "Bella has a larger family at home.", theme: "family" },
+  { id: 6, question: "What kind of home does Elsi live in?", options: ["A castle", "A cottage", "A row house", "A tent", "A duplex"], answer: 2, hint: "Several houses stand side by side.", theme: "homes" },
+  { id: 7, question: "Which house is Elsi's family's home?", options: ["The first house", "The middle house", "The last house", "The tallest house", "The blue house"], answer: 1, hint: "It is not at either end.", theme: "homes" },
+  { id: 8, question: "What does Elsi's family share with neighbours?", options: ["A kitchen", "A garden", "A wall on both sides", "A bedroom", "A roof window"], answer: 2, hint: "Middle houses touch both neighbours.", theme: "homes" },
+  { id: 9, question: "Where does Oliver live?", options: ["In the same town as Max", "In a small town close by", "On a farm", "In the forest", "In the town centre"], answer: 1, hint: "Oliver lives nearby, but not in the same town.", theme: "homes" },
+  { id: 10, question: "What kind of home does Oliver live in?", options: ["An apartment", "A hut", "A duplex", "A row house", "A spaceship"], answer: 2, hint: "It is like a house split in two.", theme: "homes" },
+  { id: 11, question: "What is a duplex like?", options: ["A house on wheels", "A big house split in two", "A room in a school", "A tent with two doors", "A farm with two barns"], answer: 1, hint: "Think of two homes in one building.", theme: "vocabulary" },
+  { id: 12, question: "How many people is Oliver's home enough for?", options: ["Two people", "Three people", "Four people", "Five people", "Six people"], answer: 1, hint: "Oliver lives with both parents.", theme: "family" },
+  { id: 13, question: "What is the most difficult thing about living in space?", options: ["The food", "The darkness", "Weightlessness", "The noise", "The cold"], answer: 2, hint: "It is hard when you float.", theme: "space" },
+  { id: 14, question: "What must astronauts do when they sleep?", options: ["Wear boots", "Tie themselves down", "Eat first", "Open a window", "Call Earth"], answer: 1, hint: "They must not float around.", theme: "space" },
+  { id: 15, question: "What must astronauts do when they use the toilet?", options: ["Float away", "Sing softly", "Be strapped down", "Turn off the lights", "Wear a helmet"], answer: 2, hint: "They need help to stay in place.", theme: "space" },
+  { id: 16, question: "How many times does the space station move around Earth in 24 hours?", options: ["8 times", "10 times", "12 times", "16 times", "20 times"], answer: 3, hint: "It happens many times each day.", theme: "space" },
+  { id: 17, question: "About how fast does the space station travel?", options: ["2,800 km an hour", "28,000 km an hour", "280 km an hour", "18,000 km an hour", "38,000 km an hour"], answer: 1, hint: "It moves very, very fast.", theme: "space" },
+  { id: 18, question: "How many sunrises can astronauts see in one day?", options: ["1", "2", "8", "10", "16"], answer: 4, hint: "The answer matches the number of orbits.", theme: "space" },
+  { id: 19, question: "What is the biggest object ever flown into space?", options: ["A moon rocket", "The International Space Station", "A telescope", "Columbus", "A satellite dish"], answer: 1, hint: "It is the station itself.", theme: "space" },
+  { id: 20, question: "What is the largest part of the space station called?", options: ["The central truss", "The moon lab", "The sky bridge", "The engine box", "The main cabin"], answer: 0, hint: "Solar panels are attached to it.", theme: "space" },
+  { id: 21, question: "What is attached to the central truss?", options: ["Wheels", "Solar panels", "Parachutes", "Rockets", "Flags"], answer: 1, hint: "They help make electricity.", theme: "space" },
+  { id: 22, question: "What do the solar panels provide?", options: ["Water", "Power", "Music", "Gravity", "Food"], answer: 1, hint: "Astronauts need this to live and work.", theme: "space" },
+  { id: 23, question: "What is Columbus on the station?", options: ["A bedroom", "A robot", "The European laboratory", "A kitchen", "A window"], answer: 2, hint: "Experiments happen there.", theme: "space" },
+  { id: 24, question: "What do astronauts do in Columbus?", options: ["Play games", "Do scientific experiments", "Grow apple trees", "Learn to drive", "Watch films"], answer: 1, hint: "It is a lab module.", theme: "space" },
+  { id: 25, question: "Which of these is a berry from nature?", options: ["Lingonberry", "Potato", "Carrot", "Onion", "Lettuce"], answer: 0, hint: "It grows wild in the forest.", theme: "nature" },
+  { id: 26, question: "Which of these is a mushroom from nature?", options: ["Banana", "Cep", "Apple", "Pear", "Cherry"], answer: 1, hint: "It is not a fruit.", theme: "nature" },
+  { id: 27, question: "What does Adhar want to get?", options: ["A gold star", "A space badge", "A new bike", "A pet", "A computer"], answer: 1, hint: "It is a reward for a brave test.", theme: "space story" },
+  { id: 28, question: "What must Adhar do to get the badge?", options: ["Land on Mars", "Fly through a black hole", "Build a station", "Pick berries", "Win a race"], answer: 1, hint: "It is a dangerous space challenge.", theme: "space story" },
+  { id: 29, question: "How does Adhar feel the first time near the black hole?", options: ["Angry", "Sleepy", "Nervous", "Bored", "Hungry"], answer: 2, hint: "Adhar is brave but worried.", theme: "feelings" },
+  { id: 30, question: "Who cheers Adhar on?", options: ["Max", "Bella", "Oliver", "Alula", "Ralph"], answer: 3, hint: "A friend supports Adhar.", theme: "space story" },
+  { id: 31, question: "What does Adhar get into before take-off?", options: ["A train", "A spaceship", "A car", "A boat", "A helicopter"], answer: 1, hint: "It flies in space.", theme: "space story" },
+  { id: 32, question: "What does Adhar barely avoid?", options: ["A comet", "A satellite", "An asteroid", "A moon", "A star"], answer: 2, hint: "It could crash into the ship.", theme: "space story" },
+  { id: 33, question: "What is floating all around Adhar?", options: ["Berries", "Birds", "Snow", "Space junk", "Books"], answer: 3, hint: "It is trash in space.", theme: "space story" },
+  { id: 34, question: "What does Adhar push for extra power?", options: ["A pedal", "A lever", "A button", "A door", "A mirror"], answer: 2, hint: "It gives the ship more force.", theme: "space story" },
+  { id: 35, question: "What does Alula do after the test?", options: ["Hides", "Congratulates Adhar on the radio", "Tells Adhar to stop", "Flies away", "Goes to sleep"], answer: 1, hint: "Adhar hears kind words after success.", theme: "space story" },
+  { id: 36, question: "Who are scouts?", options: ["Max and Elsi", "Bella and Oliver", "Ralph and Adhar", "Max and Oliver", "Bella and Elsi"], answer: 0, hint: "Two of the children already do scouting.", theme: "scouts" },
+  { id: 37, question: "Which two children want to try scouting too?", options: ["Max and Elsi", "Bella and Oliver", "Adhar and Alula", "Bella and Max", "Oliver and Ralph"], answer: 1, hint: "The other two children are curious.", theme: "scouts" },
+  { id: 38, question: "Where does the scout leader take the group?", options: ["To the beach", "To the middle of the forest", "To space", "To a farm", "To the town centre"], answer: 1, hint: "They are outdoors among trees.", theme: "scouts" },
+  { id: 39, question: "What do the children use to make groups?", options: ["Hats", "Shoes", "Ribbon colours", "Maps", "Whistles"], answer: 2, hint: "Everyone has either red or green.", theme: "scouts" },
+  { id: 40, question: "What does the green group pick?", options: ["Raspberries", "Lingonberries", "Blueberries", "Mushrooms", "Apples"], answer: 2, hint: "Think blue for the green group in the story.", theme: "scouts" },
+  { id: 41, question: "What does the red group pick?", options: ["Cloudberries", "Blackcurrants", "Lingonberries", "Strawberries", "Cep"], answer: 2, hint: "They pick the red berries.", theme: "scouts" },
+  { id: 42, question: "Who has never picked berries before?", options: ["Max", "Bella", "Elsi", "Oliver", "Ralph"], answer: 3, hint: "A friend gets help from Max.", theme: "scouts" },
+  { id: 43, question: "What do blueberry plants have?", options: ["Hairy leaves", "Shiny leaves", "No leaves", "Big thorns", "Purple stems"], answer: 1, hint: "Their leaves are smooth-looking.", theme: "nature" },
+  { id: 44, question: "What happens to blueberry leaves in winter?", options: ["They stay green", "They grow bigger", "They fall off", "They turn into berries", "Nothing happens"], answer: 2, hint: "They do not stay on the plant.", theme: "nature" },
+  { id: 45, question: "What happens to lingonberry leaves in winter?", options: ["They do not fall off", "They fly away", "They turn blue", "They melt", "They become hairy"], answer: 0, hint: "These leaves stay on the plant.", theme: "nature" },
+  { id: 46, question: "Which two children walk to school together one Friday?", options: ["Bella and Oliver", "Max and Ralph", "Elsi and Max", "Oliver and Elsi", "Bella and Elsi"], answer: 2, hint: "Two scout friends go together.", theme: "school" },
+  { id: 47, question: "Who is the only child at the schoolyard when they arrive?", options: ["Max", "Bella", "Elsi", "Oliver", "Alula"], answer: 1, hint: "Only one friend is waiting there.", theme: "school" },
+  { id: 48, question: "Why is Oliver at home?", options: ["He is tired", "He missed the bus", "He broke an arm at the skatepark", "He is in space", "He is picking berries"], answer: 2, hint: "It happened the day before.", theme: "school" },
+  { id: 49, question: "What hobby does Bella do every day after school?", options: ["Ice hockey", "Soccer", "Horse riding", "Skateboarding", "Scouting"], answer: 2, hint: "Bella rides an animal.", theme: "hobbies" },
+  { id: 50, question: "What sports does Max like?", options: ["Horse riding and tennis", "Soccer and ice hockey", "Swimming and cycling", "Basketball and golf", "Skating and skiing"], answer: 1, hint: "Max likes two team sports.", theme: "hobbies" }
 ];
-
-function shuffle(array) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-const questionBank = Array.from({ length: 100 }, (_, i) => {
-  const seed = seedQuestions[i % seedQuestions.length];
-  const variation = Math.floor(i / seedQuestions.length) + 1;
-  const shuffledOptions = shuffle(seed.options);
-  const right = shuffledOptions.indexOf(seed.options[seed.answer]);
-  return {
-    id: i + 1,
-    question: `${seed.question} (Quest ${i + 1})`,
-    options: shuffledOptions,
-    answer: right,
-    hint: `You are on quest ${i + 1}; think of simple grammar and vocabulary!`,
-    theme: `${seed.base}`
-  };
-});

@@ -55,7 +55,7 @@ function loadProgress() {
   const savedScore = parseInt(localStorage.getItem("englishQuestScore") || getCookie("englishQuestScore") || "0", 10);
   const savedCompleted = parseInt(localStorage.getItem("englishQuestCompleted") || getCookie("englishQuestCompleted") || "0", 10);
   score = Number.isNaN(savedScore) ? 0 : savedScore;
-  completed = Number.isNaN(savedCompleted) ? 0 : savedCompleted;
+  completed = Number.isNaN(savedCompleted) ? 0 : Math.min(savedCompleted, questionBank.length);
   updateScore();
 }
 
@@ -66,13 +66,13 @@ function updateScore() {
 
   const trophies = [];
   if (completed >= 10) trophies.push("🎖️ 10 klara");
-  if (completed >= 30) trophies.push("🏆 30 klara");
-  if (completed >= 100) trophies.push("👑 100 klara");
+  if (completed >= 25) trophies.push("🏆 25 klara");
+  if (completed >= 50) trophies.push("👑 50 klara");
   achievementStatus.textContent = trophies.length > 0 ? trophies.join(" - ") : "Inga troféer än";
 
   const bar = document.getElementById("progress-bar");
   if (bar) {
-    bar.style.width = `${Math.round((completed / questionBank.length) * 100)}%`;
+    bar.style.width = `${Math.min(100, Math.round((completed / questionBank.length) * 100))}%`;
   }
 }
 
@@ -122,7 +122,7 @@ function selectAnswer(index) {
     updateScore();
 
     if (completed >= questionBank.length) {
-      questionTitle.textContent = "Bra jobbat! Alla 100 uppdrag klara! 🎉";
+      questionTitle.textContent = "Bra jobbat! Alla 50 uppdrag klara! 🎉";
       hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
       nextButton.disabled = true;
       return;
@@ -158,7 +158,7 @@ function nextQuestion() {
   if (completed >= questionBank.length) return;
   let nextOrder = currentOrderPos + 1;
   if (nextOrder >= questionBank.length) {
-    questionTitle.textContent = "Bra jobbat! Alla 100 uppdrag klara! 🎉";
+    questionTitle.textContent = "Bra jobbat! Alla 50 uppdrag klara! 🎉";
     hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
     nextButton.disabled = true;
     return;
