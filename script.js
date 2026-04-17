@@ -79,49 +79,49 @@ function updateScore() {
 function getLearningHint(q, currentAttempt) {
   const themeTips = {
     homes: [
-      "Läs stycket om hem igen och markera ord som beskriver boenden.",
-      "Jämför person och plats noggrant och uteslut sådant som hör till någon annan."
+      "Tänk på vad varje ord för boende betyder.",
+      "Jämför alternativen och uteslut sådant som inte passar ett hem."
     ],
     family: [
-      "Leta efter familjeord som mother, father, brother, sister, mum och dad.",
-      "Räkna personerna eller jämför när de bor tillsammans."
+      "Leta efter familjeord som aunt, mum, dad, brother och sister.",
+      "Räkna personerna eller tänk på hur familjer brukar beskrivas."
     ],
     vocabulary: [
-      "Tänk på vilket alternativ som bäst förklarar ordet i textens sammanhang.",
-      "Prova att utesluta svar som inte beskriver samma sorts sak."
+      "Välj den förklaring som passar bäst till ordet.",
+      "Pröva att utesluta svar som beskriver något helt annat."
     ],
     space: [
-      "Läs rymdstycket långsamt och ringa in siffror, faktaord och viktiga begrepp.",
-      "Fundera på vad astronauter behöver för att kunna leva och arbeta i rymden."
+      "Använd ledtrådarna i frågan och jämför svaren noggrant.",
+      "Tänk på hur livet i rymden fungerar och välj det mest rimliga svaret."
     ],
     nature: [
-      "Jämför naturorden noga och tänk på skillnaden mellan bär, svamp och växter.",
-      "Leta efter ord som beskriver blad, färg eller hur växten ändras på vintern."
+      "Jämför orden noga och tänk på skillnaden mellan bär, svamp och växter.",
+      "Leta efter ledtrådar om färg, blad eller årstid."
     ],
     "space story": [
-      "Följ händelserna i rätt ordning och tänk på vad som händer före, under och efter testet.",
-      "Leta efter känsloord, faror och vad Adhar gör för att klara uppdraget."
+      "Föreställ dig scenen och välj det ord som passar bäst.",
+      "Tänk på vad som brukar hända i en spännande rymdberättelse."
     ],
     feelings: [
-      "Leta efter känsloord i texten och jämför dem med svarsalternativen.",
-      "Fundera på hur någon brukar känna sig inför något svårt och farligt."
+      "Jämför känsloorden och välj det som passar situationen bäst.",
+      "Fundera på hur man brukar känna sig inför något svårt eller farligt."
     ],
     scouts: [
-      "Läs skogsstycket igen och följ vad grupperna gör steg för steg.",
-      "Markera namn, färger och bärsorter innan du väljer svar."
+      "Tänk på natur, samarbete och vanliga scoutaktiviteter.",
+      "Jämför färger, grupper och saker man gör utomhus."
     ],
     school: [
-      "Leta efter vem som är på skolan och vem som är hemma, och varför.",
-      "Jämför tidord som one Friday och the day before för att förstå händelsen."
+      "Använd skolorden i frågan och välj det mest logiska svaret.",
+      "Tänk på vad orden betyder i vardagen."
     ],
     hobbies: [
-      "Tänk på vilken aktivitet som hör ihop med varje barn i texten.",
-      "Jämför hobbyerna och stryk sådant som tillhör någon annan person."
+      "Jämför aktiviteterna och välj den som passar frågan bäst.",
+      "Tänk på vilka ord som beskriver sport eller fritidsintressen."
     ]
   };
 
   const tipSet = themeTips[q.theme] || [
-    "Läs frågan igen och leta efter nyckelord i texten.",
+    "Läs frågan igen och leta efter viktiga nyckelord.",
     "Pröva att utesluta svar som inte passar sammanhanget."
   ];
 
