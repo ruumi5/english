@@ -19,6 +19,7 @@ function shuffle(array) {
 
 const currentScore = document.getElementById("current-score");
 const completedCount = document.getElementById("completed-count");
+const totalCount = document.getElementById("total-count");
 const levelText = document.getElementById("level");
 const questionTitle = document.getElementById("question-title");
 const answersEl = document.getElementById("answers");
@@ -62,12 +63,14 @@ function loadProgress() {
 function updateScore() {
   currentScore.textContent = score.toString();
   completedCount.textContent = completed.toString();
+  if (totalCount) totalCount.textContent = questionBank.length.toString();
   levelText.textContent = Math.min(20, Math.floor(score / 5000) + 1).toString();
 
   const trophies = [];
   if (completed >= 10) trophies.push("🎖️ 10 klara");
   if (completed >= 25) trophies.push("🏆 25 klara");
   if (completed >= 50) trophies.push("👑 50 klara");
+  if (completed >= questionBank.length) trophies.push("🌟 Alla klara");
   achievementStatus.textContent = trophies.length > 0 ? trophies.join(" - ") : "Inga troféer än";
 
   const bar = document.getElementById("progress-bar");
@@ -113,6 +116,14 @@ function getLearningHint(q, currentAttempt) {
     school: [
       "Använd skolorden i frågan och välj det mest logiska svaret.",
       "Tänk på vad orden betyder i vardagen."
+    ],
+    grammar: [
+      "Tänk på vilket ord som passar efter I, you, he, she, it, we och they.",
+      "Singular och plural använder inte alltid samma form, så jämför noga."
+    ],
+    possessives: [
+      "Fundera på vem saken tillhör: my, your, his, her, our eller their.",
+      "Vid plural kan både ägaren och saken vara flera, så läs hela meningen noga."
     ],
     hobbies: [
       "Jämför aktiviteterna och välj den som passar frågan bäst.",
@@ -176,7 +187,7 @@ function selectAnswer(index) {
     updateScore();
 
     if (completed >= questionBank.length) {
-      questionTitle.textContent = "Bra jobbat! Alla 50 uppdrag klara! 🎉";
+      questionTitle.textContent = `Bra jobbat! Alla ${questionBank.length} uppdrag klara! 🎉`;
       hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
       nextButton.disabled = true;
       return;
@@ -213,7 +224,7 @@ function nextQuestion() {
   if (completed >= questionBank.length) return;
   let nextOrder = currentOrderPos + 1;
   if (nextOrder >= questionBank.length) {
-    questionTitle.textContent = "Bra jobbat! Alla 50 uppdrag klara! 🎉";
+    questionTitle.textContent = `Bra jobbat! Alla ${questionBank.length} uppdrag klara! 🎉`;
     hint.textContent = "Spelet är klart. Klicka Nollställ för att spela igen.";
     nextButton.disabled = true;
     return;
