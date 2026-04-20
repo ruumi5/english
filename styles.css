@@ -75,6 +75,35 @@ main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
 .feedback.wrong { color: #d00000; }
 .hint { margin-top: 0.5rem; font-size: 0.9rem; color: #0d3b66; }
 footer { text-align: center; font-size: 0.9rem; margin: 1rem 0 1.3rem; color: #0d3b66; }
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+.modal-overlay.hidden {
+  display: none;
+}
+.modal-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #133b5c;
+  text-align: center;
+}
+.modal-card h3 {
+  margin-top: 0;
+}
+.modal-card p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
 @media (max-width: 700px) {
   .button-grid { grid-template-columns: 1fr; }
 }

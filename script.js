@@ -6,6 +6,9 @@ let completed = 0;
 let wrongGuesses = new Set();
 let questionOrder = [];
 let currentOrderPos = -1;
+let streakCount = 0;
+const streakGoal = 5;
+const streakBonusPoints = 1000;
 const achievementStatus = document.getElementById("achievement-status");
 
 function shuffle(array) {
@@ -29,6 +32,24 @@ const attemptInfo = document.getElementById("attemptInfo");
 const nextButton = document.getElementById("nextButton");
 const startButton = document.getElementById("startButton");
 const resetButton = document.getElementById("resetButton");
+const bonusModal = document.getElementById("bonus-modal");
+const bonusModalTitle = document.getElementById("bonus-modal-title");
+const bonusModalText = document.getElementById("bonus-modal-text");
+const bonusModalClose = document.getElementById("bonus-modal-close");
+
+function showBonusModal(title, text) {
+  if (!bonusModal) return;
+  bonusModalTitle.textContent = title;
+  bonusModalText.textContent = text;
+  bonusModal.classList.remove("hidden");
+  bonusModal.setAttribute("aria-hidden", "false");
+}
+
+function hideBonusModal() {
+  if (!bonusModal) return;
+  bonusModal.classList.add("hidden");
+  bonusModal.setAttribute("aria-hidden", "true");
+}
 
 function getCookie(name) {
   const pairs = document.cookie.split(";").map((p) => p.trim());
@@ -177,7 +198,23 @@ function selectAnswer(index) {
     const add = points[Math.min(attempt - 1, points.length - 1)];
     score += add;
     completed += 1;
-    const msg = `Rätt! +${add} poäng.`;
+
+    let msg = `Rätt! +${add} poäng.`;
+    if (attempt <= 2) {
+      streakCount += 1;
+      if (streakCount >= streakGoal) {
+        score += streakBonusPoints;
+        msg += ` Bonusstreak! +${streakBonusPoints} poäng!`;
+        showBonusModal(
+          "Bonus vunnen! 🎉",
+          `Du klarade 5 frågor i rad med högst ett fel per fråga och fick ${streakBonusPoints} extra poäng!`
+        );
+        streakCount = 0;
+      }
+    } else {
+      streakCount = 0;
+    }
+
     feedback.textContent = msg;
     feedback.className = "feedback correct";
 
@@ -194,10 +231,14 @@ function selectAnswer(index) {
     }
   } else {
     wrongGuesses.add(index);
+    if (attempt > 1) {
+      streakCount = 0;
+    }
     feedback.textContent = "Inte riktigt ännu. Läs tipset och försök igen!";
     feedback.className = "feedback wrong";
     hint.textContent = `Tips: ${getLearningHint(q, attempt)}`;
     if (attempt >= 4) {
+      streakCount = 0;
       feedback.textContent = `Inga fler försök. Rätt svar: ${q.options[q.answer]}`;
       disableAnswers();
       nextButton.disabled = false;
@@ -242,6 +283,8 @@ function startQuest() {
 function resetProgress() {
   score = 0;
   completed = 0;
+  streakCount = 0;
+  hideBonusModal();
   localStorage.removeItem("englishQuestScore");
   localStorage.removeItem("englishQuestCompleted");
   setCookie("englishQuestScore", "", -1);
@@ -273,5 +316,19 @@ resetButton.addEventListener("click", () => {
     resetProgress();
   }
 });
+
+if (bonusModalClose) {
+  bonusModalClose.addEventListener("click", () => {
+    hideBonusModal();
+  });
+}
+
+if (bonusModal) {
+  bonusModal.addEventListener("click", (event) => {
+    if (event.target === bonusModal) {
+      hideBonusModal();
+    }
+  });
+}
 
 loadProgress();
