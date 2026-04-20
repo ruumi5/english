@@ -78,5 +78,15 @@ const questionBank = [
   { id: 77, question: "Vilken mening är rätt?", options: ["My cars is red.", "My cars are red.", "My car are red.", "My cars am red.", "My cars be red."], answer: 1, hint: "Cars är plural och behöver are.", theme: "possessives" },
   { id: 78, question: "Vilken mening är rätt?", options: ["Their house is big.", "Their house are big.", "They house is big.", "Them house is big.", "Their house am big."], answer: 0, hint: "House är singular, så is passar här.", theme: "possessives" },
   { id: 79, question: "Välj rätt ord: We love ___ teacher.", options: ["our", "my", "his", "your", "their"], answer: 0, hint: "När läraren tillhör oss som grupp använder man our.", theme: "possessives" },
-  { id: 80, question: "Välj rätt ord i plural: The children clean ___ rooms.", options: ["his", "her", "its", "their", "my"], answer: 3, hint: "Children är plural, så their passar bäst.", theme: "possessives" }
+  { id: 80, question: "Välj rätt ord i plural: The children clean ___ rooms.", options: ["his", "her", "its", "their", "my"], answer: 3, hint: "Children är plural, så their passar bäst.", theme: "possessives" },
+  { id: 81, question: "Välj rätt ord: There ___ two windows in the room.", options: ["am", "are", "is", "be", "was"], answer: 1, hint: "Två windows betyder plural.", theme: "grammar" },
+  { id: 82, question: "Välj rätt ord: There ___ one chair in the kitchen.", options: ["am", "are", "is", "be", "were"], answer: 2, hint: "One chair är singular.", theme: "grammar" },
+  { id: 83, question: "Vilket ord är plural?", options: ["child", "house", "cars", "wall", "book"], answer: 2, hint: "Plural betyder flera än en.", theme: "grammar" },
+  { id: 84, question: "Vad är rätt plural av child?", options: ["childs", "childes", "children", "childrens", "child"], answer: 2, hint: "Det här är en oregelbunden pluralform.", theme: "grammar" },
+  { id: 85, question: "Välj rätt ord: This is ___ apple.", options: ["a", "an", "the", "two", "are"], answer: 1, hint: "Apple börjar med vokalljud.", theme: "grammar" },
+  { id: 86, question: "Välj rätt ord: Those are ___ houses.", options: ["this", "that", "these", "their", "my"], answer: 2, hint: "När något är plural och nära i betydelse passar these bäst bland alternativen.", theme: "grammar" },
+  { id: 87, question: "Vilken mening är rätt?", options: ["She have a bike.", "She has a bike.", "She are a bike.", "She am a bike.", "She do a bike."], answer: 1, hint: "Efter she används has.", theme: "grammar" },
+  { id: 88, question: "Välj rätt ord: The dog is wagging ___ tail.", options: ["his", "her", "its", "their", "our"], answer: 2, hint: "Ett djur utan särskilt kön i meningen får ofta its.", theme: "possessives" },
+  { id: 89, question: "Välj rätt ord: Anna and Leo love ___ home.", options: ["his", "her", "its", "their", "my"], answer: 3, hint: "Två personer tillsammans behöver plural possessiv.", theme: "possessives" },
+  { id: 90, question: "Vilken mening är rätt?", options: ["These books are heavy.", "This books are heavy.", "These book is heavy.", "These books is heavy.", "This book are heavy."], answer: 0, hint: "Both books och these visar plural.", theme: "grammar" }
 ];
