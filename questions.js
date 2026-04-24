@@ -88,5 +88,35 @@ const questionBank = [
   { id: 87, question: "Vilken mening är rätt?", options: ["She have a bike.", "She has a bike.", "She are a bike.", "She am a bike.", "She do a bike."], answer: 1, hint: "Efter she används has.", theme: "grammar" },
   { id: 88, question: "Välj rätt ord: The dog is wagging ___ tail.", options: ["his", "her", "its", "their", "our"], answer: 2, hint: "Ett djur utan särskilt kön i meningen får ofta its.", theme: "possessives" },
   { id: 89, question: "Välj rätt ord: Anna and Leo love ___ home.", options: ["his", "her", "its", "their", "my"], answer: 3, hint: "Två personer tillsammans behöver plural possessiv.", theme: "possessives" },
-  { id: 90, question: "Vilken mening är rätt?", options: ["These books are heavy.", "This books are heavy.", "These book is heavy.", "These books is heavy.", "This book are heavy."], answer: 0, hint: "Both books och these visar plural.", theme: "grammar" }
+  { id: 90, question: "Vilken mening är rätt?", options: ["These books are heavy.", "This books are heavy.", "These book is heavy.", "These books is heavy.", "This book are heavy."], answer: 0, hint: "Both books och these visar plural.", theme: "grammar" },
+
+  // --- Genitive / possessive pronouns (IDs 91–110) ---
+
+  // Level 1 – Standalone possessive pronouns: introduce each form in isolation
+  { id: 91, question: "The ball belongs to me. Choose the right word: The ball is ___.", options: ["my", "mine", "me", "I", "our"], answer: 1, hint: "När inget substantiv följer efter ägarordet används 'mine', inte 'my'. My ball ✓, The ball is mine ✓.", theme: "genitive" },
+  { id: 92, question: "The shoes belong to you. Choose the right word: The shoes are ___.", options: ["your", "yours", "you", "yourself", "their"], answer: 1, hint: "Yours används ensamt utan substantiv efter, ungefär som 'dina' utan ett ord efter.", theme: "genitive" },
+  { id: 93, question: "The bike belongs to him. Choose the right word: The bike is ___.", options: ["he", "him", "his", "himself", "her"], answer: 2, hint: "His är speciellt: det kan stå både före substantivet (his bike) och ensamt (the bike is his).", theme: "genitive" },
+  { id: 94, question: "The bag belongs to her. Choose the right word: The bag is ___.", options: ["she", "her", "hers", "herself", "his"], answer: 2, hint: "Her används före substantiv (her bag), men ensamt efter 'is' heter det hers.", theme: "genitive" },
+  { id: 95, question: "The house belongs to us. Choose the right word: The house is ___.", options: ["we", "us", "our", "ours", "ourselves"], answer: 3, hint: "Ours används ensamt utan substantiv efter. Our house ✓, The house is ours ✓.", theme: "genitive" },
+  { id: 96, question: "The bags belong to them. Choose the right word: The bags are ___.", options: ["they", "them", "their", "theirs", "themselves"], answer: 3, hint: "Theirs används ensamt. Their bags ✓, The bags are theirs ✓.", theme: "genitive" },
+
+  // Level 2 – Adjective vs pronoun: before noun vs standalone
+  { id: 97, question: "Välj rätt ord: Is this ___ jacket? (frågar om jackans ägare)", options: ["your", "yours", "you", "yourself", "they"], answer: 0, hint: "Före ett substantiv (jacket) används 'your', inte 'yours'.", theme: "genitive" },
+  { id: 98, question: "Välj rätt ord: No, that jacket is ___. (ingen jacka nämns igen)", options: ["my", "mine", "me", "I", "myself"], answer: 1, hint: "När inget substantiv följer används 'mine'. Jämför: 'my jacket' men 'the jacket is mine'.", theme: "genitive" },
+  { id: 99, question: "Vilken mening är rätt?", options: ["That is hers bag.", "That is her bag.", "That is her's bag.", "That is she bag.", "That is herself bag."], answer: 1, hint: "'Hers' sätts aldrig direkt före ett substantiv. Före substantivet heter det alltid 'her'.", theme: "genitive" },
+  { id: 100, question: "Vilken mening är rätt?", options: ["The red car is my.", "The red car is mine.", "The red car is me.", "The red car is myself.", "The red car is I."], answer: 1, hint: "Efter 'is', utan ett substantiv, används 'mine' — inte 'my'. My car ✓, The car is mine ✓.", theme: "genitive" },
+
+  // Level 2 – Apostrophe-s genitive with names and nouns
+  { id: 101, question: "Välj rätt form: This is Tom ___ cat.", options: ["Tom's", "Toms", "Tom is", "Tom are", "Toms'"], answer: 0, hint: "Genitiv på engelska bildas med apostrof + s efter ett namn i singular: Tom's = Toms katt.", theme: "genitive" },
+  { id: 102, question: "Välj rätt form: That is the ___ bike. (cykeln tillhör flickan)", options: ["girl's", "girls", "girl", "girl is", "girls'"], answer: 0, hint: "Girl's visar att cykeln tillhör en flicka (singular). Apostrof + s efter singular substantiv.", theme: "genitive" },
+  { id: 103, question: "Välj rätt ord: I found ___ bag. (väskan tillhör henne)", options: ["she", "hers", "her", "herself", "him"], answer: 2, hint: "Före ett substantiv (bag) används 'her', inte 'hers'.", theme: "genitive" },
+
+  // Level 2 continued – simple fill-in-the-blank with clear pronoun context
+  { id: 104, question: "This is ___ book. (boken tillhör mig)", options: ["my", "mine", "me", "I", "our"], answer: 0, hint: "Före ett substantiv (book) används 'my' — mitt/min/mina.", theme: "genitive" },
+  { id: 105, question: "That is ___ pencil. (pennan tillhör honom)", options: ["he", "him", "his", "her", "their"], answer: 2, hint: "Före ett substantiv (pencil) används 'his' — hans.", theme: "genitive" },
+  { id: 106, question: "This is ___ dog. (hunden tillhör henne)", options: ["she", "her", "hers", "him", "their"], answer: 1, hint: "Före ett substantiv (dog) används 'her' — hennes.", theme: "genitive" },
+  { id: 107, question: "These are ___ shoes. (skorna tillhör oss)", options: ["we", "us", "our", "ours", "their"], answer: 2, hint: "Före ett substantiv (shoes) används 'our' — vår/våra.", theme: "genitive" },
+  { id: 108, question: "That is ___ house. (huset tillhör dem)", options: ["they", "them", "their", "theirs", "its"], answer: 2, hint: "Före ett substantiv (house) används 'their' — deras.", theme: "genitive" },
+  { id: 109, question: "Välj rätt form: This is ___ cat. (katten tillhör Tom)", options: ["Tom's", "Toms", "Tom", "Toms is", "Tom are"], answer: 0, hint: "På engelska visar man ägande med apostrof + s efter namnet: Tom's = Toms.", theme: "genitive" },
+  { id: 110, question: "Välj rätt form: That is ___ room. (rummet tillhör flickan)", options: ["girl's", "girls", "girl", "girl is", "the girl"], answer: 0, hint: "Apostrof + s efter ett namn eller ord visar vem något tillhör: girl's = flickans.", theme: "genitive" }
 ];
